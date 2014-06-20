@@ -1,2 +1,2 @@
 version=3
-http://pear.php.net/package//download http://download.pear.php.net/package/-(.*).tgz
+http://pear.php.net/package/Net_DNS2/download http://download.pear.php.net/package/Net_DNS2-(.*).tgz
