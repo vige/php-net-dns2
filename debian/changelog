@@ -1,8 +1,9 @@
-php-net-dns2 (1.3.2-2) UNRELEASED; urgency=medium
+php-net-dns2 (1.3.2-2) unstable; urgency=medium
 
   * Remove +1 file
+  * Fix watchfile
 
- -- Mathieu Parent <math.parent@gmail.com>  Mon, 28 Apr 2014 10:42:50 +0200
+ -- Mathieu Parent <sathieu@debian.org>  Fri, 20 Jun 2014 14:58:58 +0200
 
 php-net-dns2 (1.3.2-1) unstable; urgency=medium
 
