@@ -1,3 +1,9 @@
+php-net-dns2 (1.4.1-1) UNRELEASED; urgency=medium
+
+  * New upstream version 1.4.1
+
+ -- Mathieu Parent <sathieu@debian.org>  Mon, 15 Jun 2015 14:26:15 +0200
+
 php-net-dns2 (1.3.2-2) unstable; urgency=medium
 
   * Remove +1 file
