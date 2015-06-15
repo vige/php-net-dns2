@@ -17,7 +17,7 @@ Copyright:
  2001-2005 RIPE NCC. Author Olaf M. Kolkman
  2007-2008 NLnet Labs. Author Olaf M. Kolkman
  2010-2013 Mike Pultz <mike@mikepultz.com>
-License:
+License: BSD-3-Clause with HPND
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
