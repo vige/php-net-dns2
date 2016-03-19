@@ -1,3 +1,14 @@
+php-net-dns2 (1.4.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Use proper pkg-php-tools substitutions
+  * Use standard gbp layout
+  * Fix copyright syntax
+  * Update Standards-Version to 3.9.7
+  * Rebuild with recent pkg-php-tools for the PHP 7.0 transition
+
+ -- David Prévot <taffit@debian.org>  Sat, 19 Mar 2016 12:59:35 -0400
+
 php-net-dns2 (1.4.1-1) unstable; urgency=medium
 
   * New upstream version 1.4.1
