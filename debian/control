@@ -11,8 +11,9 @@ Homepage: http://pear.php.net/package/Net_DNS2
 
 Package: php-net-dns2
 Architecture: all
-Depends: ${misc:Depends}, php-pear, ${phppear:Debian-Depends}
+Depends: ${misc:Depends}, ${phppear:Debian-Depends}
 Recommends: ${phppear:Debian-Recommends}
+Suggests: ${phppear:Debian-Suggests}
 Breaks: ${phppear:Debian-Breaks}
 Description: ${phppear:summary}
  ${phppear:description}
