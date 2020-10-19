@@ -2,7 +2,8 @@ Source: php-net-dns2
 Section: php
 Priority: optional
 Maintainer: Debian PHP PEAR Maintainers <pkg-php-pear@lists.alioth.debian.org>
-Uploaders: Mathieu Parent <sathieu@debian.org>
+Uploaders: Mathieu Parent <sathieu@debian.org>,
+           Mike Gabriel <sunweaver@debian.org>,
 Build-Depends: debhelper (>= 9), pkg-php-tools
 Standards-Version: 3.9.7
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-php/php-net-dns2.git
