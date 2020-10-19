@@ -3,20 +3,20 @@ Upstream-Name: Net_DNS2
 Source: https://pear.php.net/package/Net_DNS2
 
 Files: *
-Copyright: 2010-2013, Mike Pultz <mike@mikepultz.com>
+Copyright: 2010-2020, Mike Pultz <mike@mikepultz.com>
 License: BSD-3-Clause
 
 Files: Net_DNS2-*/Net/DNS2/Packet.php
 Copyright:
  1997-2000 Michael Fuhr
- 2010-2013, Mike Pultz <mike@mikepultz.com>
+ 2010-2020, Mike Pultz <mike@mikepultz.com>
 License: GPL-1+ or Artistic-1.0, and BSD-3-clause
 
 Files: Net_DNS2-*/Net/DNS2/RR/RRSIG.php Net_DNS2-*/Net/DNS2/RR/SIG.php
 Copyright:
  2001-2005 RIPE NCC. Author Olaf M. Kolkman
  2007-2008 NLnet Labs. Author Olaf M. Kolkman
- 2010-2013 Mike Pultz <mike@mikepultz.com>
+ 2010-2020 Mike Pultz <mike@mikepultz.com>
 License: BSD-3-Clause with HPND exception
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
