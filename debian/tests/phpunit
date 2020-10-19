@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+cd Net_DNS2-*/tests/
+phpunit -v .
