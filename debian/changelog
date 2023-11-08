@@ -1,3 +1,11 @@
+php-net-dns2 (1.5.0-2~1.gbpd5ade4) UNRELEASED; urgency=medium
+
+  ** SNAPSHOT build @d5ade4511a94db0074631ee6e83135a78d9960fa **
+
+  * UNRELEASED
+
+ -- Ville Nummela <ville@nummela.org>  Wed, 08 Nov 2023 10:11:52 +0200
+
 php-net-dns2 (1.5.0-1) unstable; urgency=medium
 
   * New upstream release.

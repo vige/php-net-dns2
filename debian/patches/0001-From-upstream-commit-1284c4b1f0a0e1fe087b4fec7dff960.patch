@@ -1,0 +1,119 @@
+From: Ville Nummela <ville@nummela.org>
+Date: Wed, 8 Nov 2023 10:10:37 +0200
+Subject: From upstream commit 1284c4b1f0a0e1fe087b4fec7dff960d0527e273
+
+PHP 8 issue: shmop_close() is deprecated is PHP 8.
+PHP 8 issue: fread() throws an exception now if you set the length to 0; so I have to check the filesize() first >
+---
+ Net_DNS2-1.5.0/Net/DNS2/Cache/File.php | 55 ++++++++++++++++++++++------------
+ Net_DNS2-1.5.0/Net/DNS2/Cache/Shm.php  |  7 ++++-
+ 2 files changed, 42 insertions(+), 20 deletions(-)
+
+diff --git a/Net_DNS2-1.5.0/Net/DNS2/Cache/File.php b/Net_DNS2-1.5.0/Net/DNS2/Cache/File.php
+index a0e0b7b..6e64bd5 100644
+--- a/Net_DNS2-1.5.0/Net/DNS2/Cache/File.php
++++ b/Net_DNS2-1.5.0/Net/DNS2/Cache/File.php
+@@ -44,10 +44,17 @@ class Net_DNS2_Cache_File extends Net_DNS2_Cache
+         //
+         // check that the file exists first
+         //
+-        if ( ($this->cache_opened == false) 
+-            && (file_exists($this->cache_file) == true) 
+-            && (filesize($this->cache_file) > 0)
+-        ) {
++        if ( ($this->cache_opened == false) && (file_exists($this->cache_file) == true) ) {
++
++            //   
++            // check the file size                
++            //                   
++            $file_size = filesize($this->cache_file);
++            if ( ($file_size === false) || ($file_size <= 0) ) {
++
++                return;
++            }
++
+             //
+             // open the file for reading
+             //
+@@ -62,7 +69,7 @@ class Net_DNS2_Cache_File extends Net_DNS2_Cache
+                 //
+                 // read the file contents
+                 //
+-                $data = fread($fp, filesize($this->cache_file));
++                $data = fread($fp, $file_size);
+ 
+                 $decoded = null;
+                     
+@@ -137,29 +144,39 @@ class Net_DNS2_Cache_File extends Net_DNS2_Cache
+             fseek($fp, 0, SEEK_SET);
+ 
+             //
+-            // read the file contents
+-            //
+-            $data = @fread($fp, filesize($this->cache_file));
+-            if ( ($data !== false) && (strlen($data) > 0) ) {
++            // get the file size first; in PHP 8.0 fread() was changed to throw an exception if you try
++            // and read 0 bytes from a file.
++            //         
++            $file_size = @filesize($this->cache_file);
++
++            if ( ($file_size !== false) && ($file_size > 0) ) {
+ 
+                 //
+-                // unserialize and store the data
++                // read the file contents
+                 //
+-                $c = $this->cache_data;
++                $data = @fread($fp, $file_size);
++                
++                if ( ($data !== false) && (strlen($data) > 0) ) {
+ 
+-                $decoded = null;
++                    //
++                    // unserialize and store the data
++                    //
++                    $c = $this->cache_data;
+ 
+-                if ($this->cache_serializer == 'json') {
++                    $decoded = null;
+ 
+-                    $decoded = json_decode($data, true);
+-                } else {
++                    if ($this->cache_serializer == 'json') {
+ 
+-                    $decoded = unserialize($data);
+-                }
++                        $decoded = json_decode($data, true);
++                    } else {
++
++                        $decoded = unserialize($data);
++                    }
+                 
+-                if (is_array($decoded) == true) {
++                    if (is_array($decoded) == true) {
+ 
+-                    $this->cache_data = array_merge($c, $decoded);
++                        $this->cache_data = array_merge($c, $decoded);
++                    }
+                 }
+             }
+ 
+diff --git a/Net_DNS2-1.5.0/Net/DNS2/Cache/Shm.php b/Net_DNS2-1.5.0/Net/DNS2/Cache/Shm.php
+index 5308b53..1546b6d 100644
+--- a/Net_DNS2-1.5.0/Net/DNS2/Cache/Shm.php
++++ b/Net_DNS2-1.5.0/Net/DNS2/Cache/Shm.php
+@@ -253,8 +253,13 @@ class Net_DNS2_Cache_Shm extends Net_DNS2_Cache
+ 
+             //
+             // close the segment
++            //       
++            // shmop_close() is deprecated in v8.0.0
+             //
+-            shmop_close($this->_cache_id);
++            if (version_compare(PHP_VERSION, '8.0.0', '<') == true)          
++            {
++                shmop_close($this->_cache_id);  
++            }
+ 
+             //
+             // unlock
